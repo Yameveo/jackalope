@@ -2,11 +2,9 @@
 namespace Jackalope\NodeType;
 
 use DOMElement;
-use DOMXPath;
 use ArrayObject;
 use InvalidArgumentException;
 use PHPCR\NodeType\NodeTypeDefinitionInterface;
-use Jackalope\Helper;
 use Jackalope\FactoryInterface;
 use PHPCR\Util\ValueConverter;
 
@@ -52,25 +50,36 @@ class NodeTypeDefinition implements NodeTypeDefinitionInterface
      * @var boolean
      */
     protected $isMixin = false;
+
     /**
      * @var boolean
      */
     protected $isQueryable = true;
+
     /**
      * @var boolean
      */
     protected $hasOrderableChildNodes = false;
+
     /**
      * Name of the primary item of this node type.
      * @var string
      */
     protected $primaryItemName= null;
 
-    /** @var array */
+    /**
+     * @var array
+     */
     protected $declaredSuperTypeNames = null;
-    /** @var ArrayObject */
+
+    /**
+     * @var ArrayObject
+     */
     protected $declaredPropertyDefinitions = null;
-    /** @var ArrayObject */
+
+    /**
+     * @var ArrayObject
+     */
     protected $declaredNodeDefinitions = null;
 
     /**
@@ -182,7 +191,7 @@ class NodeTypeDefinition implements NodeTypeDefinitionInterface
      */
     public function getDeclaredSupertypeNames()
     {
-        if (is_null($this->declaredSuperTypeNames)) {
+        if (null === $this->declaredSuperTypeNames) {
             return array(self::NAME_NT_BASE);
         }
 
@@ -246,7 +255,7 @@ class NodeTypeDefinition implements NodeTypeDefinitionInterface
      */
     public function getDeclaredPropertyDefinitions()
     {
-        return is_null($this->declaredPropertyDefinitions)
+        return null === $this->declaredPropertyDefinitions
             ? null : $this->declaredPropertyDefinitions->getArrayCopy();
     }
 
@@ -257,7 +266,7 @@ class NodeTypeDefinition implements NodeTypeDefinitionInterface
      */
     public function getDeclaredChildNodeDefinitions()
     {
-        return is_null($this->declaredNodeDefinitions)
+        return null === $this->declaredNodeDefinitions
             ? null : $this->declaredNodeDefinitions->getArrayCopy();
     }
 }
